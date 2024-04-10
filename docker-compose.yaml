@@ -9,8 +9,8 @@ services:
       - .:/home/node/app
 
 
-db:
-  image: mysql
-  environment:
-    MYSQL_ROOT_PASSWORD: root
-    MYSQL_DATABASE: nestjs
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: nestjs
