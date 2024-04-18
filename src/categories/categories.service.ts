@@ -1,4 +1,4 @@
-import { Delete, Get, Injectable, Post, Put } from '@nestjs/common';
+import { Delete, Get, HttpCode, Injectable, Post, Put } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
@@ -17,12 +17,16 @@ constructor(private prisma:PrismaService) {}
 
   @Get()
   findAll() {
-    return this.prisma.category.findMany();
+    return this.prisma.category.findMany({
+      orderBy:{
+        createdAt: 'desc',
+      }
+    });
   }
 
   @Get(':id')
   findOne(id: number) {
-   return this.prisma.category.findUnique({
+   return this.prisma.category.findUniqueOrThrow({
      where: {id}
    });
   }
@@ -35,6 +39,8 @@ constructor(private prisma:PrismaService) {}
     });
   }
 
+  
+  @HttpCode(204)
   @Delete(':id')
   remove(id: number) {
     return this.prisma.category.delete({
