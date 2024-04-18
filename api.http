@@ -1,4 +1,4 @@
-
+## CATEGORIES
 GET http://localhost:3000/categories
 ###
 GET http://localhost:3000/categories/1
@@ -19,3 +19,31 @@ Content-Type: application/json
     }
 ###
 DELETE http://localhost:3000/categories/2
+
+
+===========================================
+## PRODUCTS
+
+###
+GET http://localhost:3000/products
+###
+GET http://localhost:3000/products/1
+###
+POST http://localhost:3000/products
+Content-Type: application/json
+
+    {
+        "name": "Product 1",
+        "price": 100,
+        "categoryId": 1
+    }
+###
+PATCH http://localhost:3000/products/1
+Content-Type: application/json
+
+    {
+        "name": "Product 1 Updated",
+        "price": 200
+    }
+###
+DELETE http://localhost:3000/products/3
